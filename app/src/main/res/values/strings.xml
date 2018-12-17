@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Mokapos </string>
+    <string name="header_title_library">LIBRARY</string>
+    <string name="header_title_shopping_cart">SHOPPING CART</string>
+    <string name="header_title_items">ALL ITEMS</string>
+    <string name="header_title_discounts">ALL DISCOUNTS</string>
+
+    <string name="subtotal">Subtotal</string>
+    <string name="discount">Discount</string>
+
+    <string name="clear_sale">CLEAR SALE</string>
+    
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="quantity">Quantity</string>
+
+    <string name="msg_cart_clear">Cart has been cleared...</string>
+    <string name="msg_cart_empty">Nothing to clear in cart...</string>
+
+    <string name="msg_nw_error">No Internet. Please connect to internet and tap to retry.</string>
+
+
+</resources>

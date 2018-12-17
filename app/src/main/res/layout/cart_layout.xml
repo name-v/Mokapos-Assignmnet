@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/header_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_bar_height"/>
+
+    <TextView
+        android:id="@+id/total"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:background="@drawable/bg_box_border"
+        android:shadowColor="@color/colorPrimary"
+        android:elevation="4dp"
+        android:text="$ 3240"
+        android:layout_height="32dp" />
+
+    <Button
+        android:id="@+id/action_clear-cart"
+        android:layout_width="match_parent"
+        android:layout_above="@id/total"
+        android:shadowColor="@color/colorPrimaryDark"
+        android:background="@android:color/holo_red_dark"
+        android:text="@string/clear_sale"
+        android:elevation="4dp"
+        android:layout_margin="4dp"
+        android:layout_height="40dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list_view"
+        android:layout_below="@id/header_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/action_clear-cart"/>
+
+</RelativeLayout>
