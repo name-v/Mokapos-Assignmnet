@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements LibraryFragment.O
                 });
             }
         } else {
+            //init CartManager
             CartManager.getInstance(this);
             findViewById(R.id.loading_view).setVisibility(View.GONE);
             attachFragments();

@@ -1,15 +1,12 @@
 package moka.mokapos;
 
 import android.content.Context;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import moka.mokapos.db.BaseDatabaseLoader;
 import moka.mokapos.db.CartDataBase;
-import moka.mokapos.db.CartItemsLoader;
 import moka.mokapos.model.CartItem;
 import moka.mokapos.model.Discount;
 import moka.mokapos.model.Price;
@@ -42,16 +39,6 @@ public class CartManager {
         return instance;
     }
 
-
-    public void load(Context context){
-        new CartItemsLoader(context, new BaseDatabaseLoader.OnDataLoadedListener() {
-            @Override
-            public void onDataLoaded(List dataList) {
-
-            }
-        }).load();
-    }
-
     public void addCartUpdateListener(CartUpdateListener listener) {
         updateListeners.add(listener);
     }
@@ -60,11 +47,9 @@ public class CartManager {
         this.context = context;
         db = new CartDataBase(context);
         List<CartItem> list = db.getAllData();
-        Log.d("CartManger ", "kiwi size = "+ list.size());
         cartList = new HashMap<>();
         updateListeners = new ArrayList<>();
-        for(CartItem item : list){
-            Log.d("CartManger ", "kiwi "+ item.toString());
+        for (CartItem item : list) {
             cartList.put(getUniqueKey(String.valueOf(item.getItemId()), item.getDiscount()), item);
         }
 
@@ -89,12 +74,12 @@ public class CartManager {
             cartItem.setDiscount(discount);
         }
         cartList.put(key, cartItem);
-        //Make DB Entry
 
         for (CartUpdateListener listener : updateListeners) {
             listener.onItemAdded(cartItem);
         }
 
+        //Make DB Entry
         db.inserOrUpdate(cartItem, key);
     }
 
@@ -105,13 +90,14 @@ public class CartManager {
     public void removeItem(CartItem item) {
         cartList.remove(item);
         //update DB
+        db.deleteFromDB(getUniqueKey(String.valueOf(item.getItemId()), item.getDiscount()));
 
         for (CartUpdateListener listener : updateListeners) {
             listener.onItemRemoved(item);
         }
     }
 
-    public void saveCart(){
+    public void saveCart() {
         db.addAll(getCartList());
     }
 
